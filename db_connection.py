@@ -40,7 +40,6 @@ class DatabaseConnection:
                  MinSquareFootage, NewListings, TotalListings)
             )
             conn.commit()
-            print("✅ Sales data inserted.")
         except Exception as e:
             print("❌ Error inserting sales data:", e)
         finally:
