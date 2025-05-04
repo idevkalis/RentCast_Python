@@ -6,14 +6,12 @@ class DatabaseConnection:
     def __init__(self, config_path='db_config.ini'):
         config = configparser.ConfigParser()
         config.read(config_path)
-        config.read(config_path)
 
         self.conn_str = (
             f'DRIVER={{{config["sqlserver"]["driver"]}}};'
             f'SERVER={config["sqlserver"]["server"]};'
             f'DATABASE={config["sqlserver"]["database"]};'
-            f'UID={config["sqlserver"]["username"]};'
-            f'PWD={config["sqlserver"]["password"]}'
+            f'Trusted_Connection=yes;'
         )
 
     def connect(self):
@@ -24,37 +22,28 @@ class DatabaseConnection:
             print("❌ Failed to connect to SQL Server:", e)
             return None
 
-    # def insert_house(self, address, sqft, estimate, price):
-    #     conn = self.connect()
-    #     if not conn:
-    #         return
-    #     try:
-    #         cursor = conn.cursor()
-    #         cursor.execute(
-    #             "INSERT INTO tblHouse (Address, sqft, Zestimate, Price) VALUES (?, ?, ?, ?)",
-    #             (address, sqft, estimate, price)
-    #         )
-    #         conn.commit()
-    #         print("✅ House inserted.")
-    #     except Exception as e:
-    #         print("❌ Error inserting house:", e)
-    #     finally:
-    #         conn.close()
-
-    def insert_marketData(self, address, sqft, estimate, price):
+    def insert_salesData(self, fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot,
+                         avgSquareFootage, Date, MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage,
+                         MedianDaysOnMarket, MedianPrice, MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket,
+                         MinPrice, MinPricePerSquareFoot, MinSquareFootage, NewListings, TotalListings):
         conn = self.connect()
         if not conn:
             return
         try:
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO tblHouse (Address, sqft, Zestimate, Price) VALUES (?, ?, ?, ?)",
-                (address, sqft, estimate, price)
+                "INSERT INTO tblSalesData (fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot, avgSquareFootage, Date, MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage, MedianDaysOnMarket, MedianPrice, MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket, MinPrice, MinPricePerSquareFoot, MinSquareFootage, NewListings, TotalListings) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot, avgSquareFootage, Date,
+                 MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage, MedianDaysOnMarket, MedianPrice,
+                 MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket, MinPrice, MinPricePerSquareFoot,
+                 MinSquareFootage, NewListings, TotalListings)
             )
             conn.commit()
-            print("✅ House inserted.")
+            print("✅ Sales data inserted.")
         except Exception as e:
-            print("❌ Error inserting house:", e)
+            print("❌ Error inserting sales data:", e)
         finally:
             conn.close()
+
 

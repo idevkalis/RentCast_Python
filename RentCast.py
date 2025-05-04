@@ -8,8 +8,8 @@ class RentCast:
 
     def get_api_token(self):
         # Read API key from CSV
-        df = pd.read_csv(r"C:\Users\danie\OneDrive\Desktop\RentCast\rentcast_api_keys.csv")
-        api_key = df.loc[df['API'] == 'x-api', 'KEY'].iloc[0]
+        # df = pd.read_csv(r"C:\Users\danie\OneDrive\Desktop\RentCast\rentcast_api_keys.csv")
+        # api_key = df.loc[df['API'] == 'x-api', 'KEY'].iloc[0]
         api_key = "3722b03c8961444eb3bd843e6bc1f859"
         return api_key
 
@@ -67,6 +67,7 @@ class RentCast:
 
         if response.status_code == 200:
             data = response.json()
+            # print(json.dumps(data, indent=2))
             return data  # ✅ Return list of market statistics
         else:
             print("❌ Request failed:", response.status_code)
