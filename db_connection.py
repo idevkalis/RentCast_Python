@@ -22,7 +22,7 @@ class DatabaseConnection:
             print("❌ Failed to connect to SQL Server:", e)
             return None
 
-    def insert_salesData(self, fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot,
+    def insert_salesData(self, fkCategoryTypeId, CategoryValue, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot,
                          avgSquareFootage, Date, MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage,
                          MedianDaysOnMarket, MedianPrice, MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket,
                          MinPrice, MinPricePerSquareFoot, MinSquareFootage, NewListings, TotalListings):
@@ -32,9 +32,10 @@ class DatabaseConnection:
         try:
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO tblSalesData (fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot, avgSquareFootage, Date, MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage, MedianDaysOnMarket, MedianPrice, MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket, MinPrice, MinPricePerSquareFoot, MinSquareFootage, NewListings, TotalListings) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (fkCategoryTypeId, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot, avgSquareFootage, Date,
+                "INSERT INTO tblSalesData (fkCategoryTypeId, CategoryValue, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot, avgSquareFootage, Date, MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage, MedianDaysOnMarket, MedianPrice, MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket, MinPrice, MinPricePerSquareFoot, MinSquareFootage, NewListings, TotalListings) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (fkCategoryTypeId, CategoryValue, ZipCode, avgDaysOnMarket, avgPrice, avgPricePerSquareFoot,
+                 avgSquareFootage, Date,
                  MaxDaysOnMarket, MaxPrice, MaxPricePerSquareFoot, MaxSquareFootage, MedianDaysOnMarket, MedianPrice,
                  MedianPricePerSqFt, MedianSquareFootage, MinDaysOnMarket, MinPrice, MinPricePerSquareFoot,
                  MinSquareFootage, NewListings, TotalListings)

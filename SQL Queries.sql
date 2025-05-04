@@ -6,12 +6,13 @@ GO
 
 -- Insert values for each CategoryType (By Bedroom, By Property, By History)
 INSERT INTO tblCategoryType (CategoryTypeName)
-VALUES ('By Bedroom'), ('By Property'), ('By History');
+VALUES ('By Bedroom'), ('By Property');
 GO
 
 CREATE TABLE tblSalesData (
     pkSalesDataId INT PRIMARY KEY IDENTITY(1,1),
     fkCategoryTypeId INT,  -- Foreign key to tblCategoryType
+    CategoryValue NVARCHAR(MAX),
     ZipCode VARCHAR(10) NOT NULL,
     avgDaysOnMarket DECIMAL(18, 2),
     avgPrice DECIMAL(18, 2),
