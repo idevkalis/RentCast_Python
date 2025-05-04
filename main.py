@@ -9,9 +9,9 @@ data = """{"id": "60616", "saleData": {"averageDaysOnMarket": 58.06, "averagePri
 def process_stats(stats, CategoryTypeID, zip_code, date, db):
     # Determine the category value based on CategoryTypeID
     if CategoryTypeID == 1:
-        CategoryValue = stats.get('propertyType', None)
-    elif CategoryTypeID == 2:
         CategoryValue = stats.get('bedrooms', None)
+    elif CategoryTypeID == 2:
+        CategoryValue = stats.get('propertyType', None)
     else:
         CategoryValue = None  # Fallback if CategoryTypeID is unexpected
 
