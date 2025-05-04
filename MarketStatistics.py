@@ -3,6 +3,7 @@ import SalesData
 import json
 from RentCast import RentCast
 
+
 class MarketStatistics:
     def insert_marketStatsByALLZipCode(self,db):
         ZipCodeList = Utility.get_ChicagoZipCodeList()
